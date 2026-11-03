@@ -110,7 +110,7 @@ Pages fetched this way still contain the old scripts, so apply the edits describ
 
 **Visual cohesion (deliberate departures from the original)**
 - **One accent family:** Book Meeting is filled orange-red and Download CV is a pastel-orange outline, replacing the original blue and green. The submit button is a pill like every other CTA.
-- **Hero art:** the logo no longer pulses or hue-shifts, and it shrinks from 380px to 300px (220px on phones). The floating tech icons share one muted pastel orange and twinkle softly instead of using eight brand colours.
+- **Hero art:** the logo no longer pulses or hue-shifts, and it sits at 60% of a 360px square (280px on phones) with the tech icons on a ring around it, so they never overlap. The floating tech icons share one muted pastel orange and twinkle softly instead of using eight brand colours.
 - **Shared width:** every hero illustration is capped by `--hero-visual` (440px).
 - **Experience heroes:** the screenshot stack (Web), gameplay video (Games) and tilting illustration (ERP) are replaced by one shared app-window component, `Showcase`. Web shows a browser that cycles through the work samples; clicking it opens the image viewer. Games shows a library grid of all nine covers, each scrolling to its card. ERP shows the eight modules wired to one core, with a signal passing between them. The 42 MB `games-reel.mp4` and `erpwelcome.png` are no longer shipped; the originals are still in the old Portfolio repo.
 - **Warmer hero:** the blue glow in the hero background is gone.

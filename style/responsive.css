@@ -61,7 +61,11 @@
   }
 
   .profile {
-    width: min(220px, 100%);
+    width: min(280px, 100%);
+  }
+
+  .float-icon {
+    font-size: 16px;
   }
 
   .modal-arrow {

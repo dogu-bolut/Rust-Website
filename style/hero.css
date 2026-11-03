@@ -67,29 +67,37 @@
   min-width: 0;
 }
 
-/* Home: profile image with floating icons */
+/* Home: logo in the centre, tech icons on a ring around it (never overlapping) */
 .profile {
   position: relative;
-  width: min(300px, 100%);
+  width: min(360px, 100%);
+  aspect-ratio: 1;
 }
 
 .profile > img {
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  transform: translate(-50%, -50%);
 }
 
 .float-icon {
   position: absolute;
   font-size: 20px;
+  line-height: 1;
   color: var(--color-pastel-orange);
   opacity: .45;
+  transform: translate(-50%, -50%);
   user-select: none;
 }
 
-.float-icon.first   { top: 72%;  left: 4%; }
-.float-icon.second  { top: 66%;  right: 4%; }
-.float-icon.third   { top: 34%;  left: -4%; }
-.float-icon.fourth  { top: 26%;  right: 2%; }
-.float-icon.fifth   { top: 6%;   left: 14%; }
-.float-icon.sixth   { top: 90%;  right: 26%; }
-.float-icon.seventh { top: 92%;  left: 30%; }
-.float-icon.eighth  { top: -2%;  right: 34%; }
+/* 8 points on a circle of radius 46%, starting 22.5deg right of top */
+.float-icon.first   { left: 67.6%; top: 7.5%; }
+.float-icon.second  { left: 92.5%; top: 32.4%; }
+.float-icon.third   { left: 92.5%; top: 67.6%; }
+.float-icon.fourth  { left: 67.6%; top: 92.5%; }
+.float-icon.fifth   { left: 32.4%; top: 92.5%; }
+.float-icon.sixth   { left: 7.5%;  top: 67.6%; }
+.float-icon.seventh { left: 7.5%;  top: 32.4%; }
+.float-icon.eighth  { left: 32.4%; top: 7.5%; }
