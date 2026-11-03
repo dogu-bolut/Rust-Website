@@ -1,0 +1,459 @@
+/* Game privacy pages: plain static HTML (no WASM, so Google Play's links and
+   crawlers always work), styled to match the main site. Colour values mirror
+   style/tokens.css; keep them in step when the palette changes. */
+
+:root {
+  color-scheme: dark;
+  --color-orange-red: #FF5A1F;
+  --color-classic-orange: #FFAE4D;
+  --color-dark-orange: #FF9431;
+  --color-pastel-orange: #FFBD72;
+  --accent-gradient: linear-gradient(120deg, var(--color-orange-red), var(--color-dark-orange));
+  --bg-0: #000000;
+  --bg-1: #111111;
+  --card: #1a1a1a;
+  --card-border: rgba(255,255,255,0.08);
+  --text: #ffffff;
+  --text-muted: #b1b1b1;
+  --text-soft: #8f8f8f;
+  --text-dim: #aaaaaa;
+  --text-light: #dddddd;
+  --radius-pill: 999px;
+  --nav-h: 68px;
+  --container: min(880px, calc(100vw - 32px));
+  --font: "Montserrat", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 24px);
+}
+
+body {
+  background: var(--bg-0);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- skip link */
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--color-orange-red);
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+/* ---------- top bar (same look as the site navbar) */
+.legal-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(0,0,0,.85);
+  border-bottom: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+}
+
+.legal-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: min(1200px, calc(100vw - 32px));
+  height: var(--nav-h);
+  margin-inline: auto;
+}
+
+.brand {
+  color: var(--color-orange-red);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.btn-back-to-games {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  box-shadow: inset 0 0 0 1.5px var(--color-pastel-orange);
+  color: var(--color-pastel-orange);
+  font-size: .8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.btn-back-to-games i {
+  transition: transform .2s ease;
+}
+
+.btn-back-to-games:hover,
+.btn-back-to-games:focus-visible {
+  background: var(--color-pastel-orange);
+  color: var(--bg-0);
+}
+
+.btn-back-to-games:hover i {
+  transform: translateX(-3px);
+}
+
+/* ---------- hero */
+.legal-hero {
+  padding: 56px 0 40px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,148,49,.07), transparent 45%),
+    radial-gradient(circle at 85% 60%, rgba(255,90,31,.09), transparent 45%),
+    var(--bg-1);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.legal-hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: var(--container);
+  margin-inline: auto;
+}
+
+.legal-cover {
+  flex-shrink: 0;
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  box-shadow: 0 14px 36px rgba(0,0,0,.45);
+}
+
+.legal-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-dark-orange);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.legal-hero h1 {
+  margin-block: 4px 14px;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.legal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.legal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(255,148,49,.1);
+  border-radius: var(--radius-pill);
+  color: var(--color-pastel-orange);
+  font-size: .78rem;
+  font-weight: 600;
+}
+
+.legal-chip strong {
+  font-weight: 700;
+}
+
+/* ---------- body */
+.legal-body {
+  display: grid;
+  gap: 24px;
+  width: var(--container);
+  margin: 32px auto 72px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- language tabs (radio buttons, no script) */
+.legal-lang {
+  display: inline-flex;
+  justify-self: start;
+  gap: 4px;
+  padding: 4px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-pill);
+}
+
+.legal-lang input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.legal-lang label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 18px 7px 7px;
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.legal-lang label:hover {
+  color: var(--text);
+}
+
+.legal-lang input:checked + label {
+  background: rgba(255,148,49,.14);
+  color: var(--text);
+}
+
+.legal-lang input:checked + label .lang-code {
+  background: var(--accent-gradient);
+  color: var(--text);
+}
+
+.legal-lang input:focus-visible + label {
+  outline: 2px solid var(--color-dark-orange);
+  outline-offset: 2px;
+}
+
+/* only the chosen language's card shows (browsers without :has show both) */
+body:has(#lang-en:checked) #privacy-tr,
+body:has(#lang-tr:checked) #privacy-en {
+  display: none;
+}
+
+.lang-code {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  height: 26px;
+  padding-inline: 6px;
+  background: rgba(255,148,49,.14);
+  border-radius: var(--radius-pill);
+  color: var(--color-dark-orange);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+/* ---------- policy card */
+.legal-card {
+  position: relative;
+  overflow: hidden;
+  padding: 32px 36px 36px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+}
+
+.legal-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--accent-gradient);
+  opacity: .6;
+}
+
+.legal-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.legal-card-head h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.legal-card article {
+  color: var(--text-dim);
+}
+
+.legal-card p {
+  margin-bottom: 1rem;
+}
+
+.legal-card strong {
+  color: var(--text);
+}
+
+.legal-card h3 {
+  margin: 1.8rem 0 .6rem;
+  padding-left: 12px;
+  border-left: 3px solid var(--color-orange-red);
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.legal-card ul {
+  display: grid;
+  gap: 6px;
+  margin: .4rem 0 1.2rem;
+  list-style: none;
+}
+
+.legal-card li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.legal-card li::before {
+  content: "";
+  position: absolute;
+  top: .7em;
+  left: 2px;
+  width: 7px;
+  height: 7px;
+  background: var(--color-dark-orange);
+  border-radius: 50%;
+}
+
+.legal-card a,
+.legal-contact a {
+  color: var(--color-pastel-orange);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,189,114,.35);
+  text-underline-offset: 3px;
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+
+.legal-card a:hover,
+.legal-contact a:hover {
+  color: var(--color-classic-orange);
+  text-decoration-color: currentColor;
+}
+
+/* ---------- contact */
+.legal-contact {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 28px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255,90,31,.1), transparent 60%),
+    var(--card);
+  border: 1px solid rgba(255,148,49,.3);
+  border-radius: 18px;
+}
+
+.legal-contact-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  background: var(--accent-gradient);
+  border-radius: 14px;
+  font-size: 1.2rem;
+}
+
+.legal-contact h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.legal-contact p {
+  color: var(--text-dim);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- footer (same as the site) */
+.site-footer {
+  padding: 24px 16px;
+  background: var(--bg-1);
+  color: var(--text-dim);
+  font-size: .9rem;
+  text-align: center;
+}
+
+/* ---------- small screens */
+@media (max-width: 600px) {
+  .brand {
+    font-size: 1.25rem;
+  }
+
+  .btn-back-to-games {
+    padding: 9px 14px;
+  }
+
+  .legal-hero {
+    padding: 36px 0 28px;
+  }
+
+  .legal-hero-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .legal-cover {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+  }
+
+  .legal-card {
+    padding: 24px 20px 28px;
+  }
+
+  .legal-contact {
+    align-items: flex-start;
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn-back-to-games:hover i {
+    transform: none;
+  }
+}

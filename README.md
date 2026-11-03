@@ -71,15 +71,12 @@ for f in logofalan.png web-development.png game_console.png graphics-design.png 
   curl -fsSL "$BASE/img/$f" -o "public/assets/img/$f"
 done
 curl -fsSL "$BASE/pdf/Dogu%20Bolut%20CV%20-%20English.pdf" -o "public/assets/pdf/Dogu Bolut CV - English.pdf"
-for f in common.css navbar.css privacypolicy.css; do
-  curl -fsSL "$BASE/css/$f" -o "public/assets/css/$f"
-done
 for s in brickpuzzle whatsinmybag mynewlife 3dspaceshooter tilevania bountyhunter spacedrifter; do
   curl -fsSL "$BASE/pages/privacy/$s.html" -o "public/assets/pages/privacy/$s.html"
 done
 ```
 
-Pages fetched this way still contain the old scripts, so apply the edits described under Decisions. Netlify may also inject a comment into served HTML, which is why the committed pages were copied from the original repository instead.
+Pages fetched this way are the original design, with its old scripts and stylesheets. The committed pages were rebuilt from them (see "Privacy pages" under Decisions), and `public/assets/css/legal.css` is written for this project, not fetched. Netlify may also inject a comment into served HTML, which is why the committed pages were copied from the original repository instead.
 
 ## Project layout
 
@@ -99,9 +96,14 @@ Pages fetched this way still contain the old scripts, so apply the edits describ
 - **Extra dependency:** `send_wrapper` lets the non-`Send` `IntersectionObserver` and its `Closure` be held by Leptos's `on_cleanup`.
 
 **Privacy pages**
-- **Back link:** the original used `<button onclick="...">`, which is inline JS. It is now `<a href="/games" class="btn-back-to-games">`, with the same styling.
-- **CSS addition:** `privacypolicy.css` gains a `.privacy-policy a.btn-back-to-games` rule, because the generic `.privacy-policy a` rule would otherwise restyle the link and cut off its bottom border. The pages' other CSS is unchanged.
-- **Scripts removed:** this also removes the code that filled `<span id="date">`, so the year no longer appears after the heading. The "Last updated" line is unaffected.
+- **Redesign:** the 7 game privacy pages were rebuilt to match the site, and they're still plain static HTML with no scripts, so Google Play's links and crawlers work without WASM. Each page now has:
+  - the site's top bar ("Portfolio" brand and an outline "Back to Games" button)
+  - a hero with the game's cover, name, last-updated date and a "Free game" chip
+  - English and Turkish tabs that show one language at a time, opening in English. The tabs are radio buttons styled with CSS (`:has(#lang-tr:checked)`), so they need no script; browsers without `:has` show both languages
+  - a contact card and the site's footer
+- **Text unchanged:** the policy text is word for word the original. The rebuild script compared every word of both languages before writing each page. The "Note: For English, scroll down" line was replaced by the language tabs, and the copyright line has no year, because a static page can't keep it current.
+- **One stylesheet:** `public/assets/css/legal.css` mirrors the colours in `style/tokens.css`; keep the two in step. It replaces the original `common.css`, `navbar.css` and `privacypolicy.css`, which were removed.
+- **Back link:** the original used `<button onclick="...">`, which is inline JS. It is an `<a href="/games" class="btn-back-to-games">` link.
 
 **Content and icons**
 - **Icon:** `fab fa-css` exists in Font Awesome 6.7.1, so the `fa-css3-alt` fallback wasn't needed.
