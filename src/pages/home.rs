@@ -4,7 +4,7 @@ use leptos_router::components::A;
 
 use crate::components::{Contact, GlowLink, Hero, SectionHeading};
 use crate::data::{
-    CERTIFICATES, CERTIFICATES_HEADING, EXPERIENCES, EXPERIENCES_HEADING, FLOATING_ICONS,
+    Glyph, CERTIFICATES, CERTIFICATES_HEADING, EXPERIENCES, EXPERIENCES_HEADING, FLOATING_ICONS,
     HOME_BLURB, HOME_INTRO, LEARN_MORE, META_HOME, PROFILE_ALT, PROFILE_IMAGE, SITE_TITLE, SOCIALS,
 };
 
@@ -22,7 +22,17 @@ pub fn HomePage() -> impl IntoView {
                         .map(|icon| {
                             view! {
                                 <div class=format!("float-icon {}", icon.position)>
-                                    <i class=icon.icon></i>
+                                    {match icon.glyph {
+                                        Glyph::FontAwesome(class) => view! { <i class=class></i> }.into_any(),
+                                        Glyph::Svg(path) => {
+                                            view! {
+                                                <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d=path></path>
+                                                </svg>
+                                            }
+                                                .into_any()
+                                        }
+                                    }}
                                 </div>
                             }
                         })

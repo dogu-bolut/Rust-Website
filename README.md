@@ -105,6 +105,7 @@ Pages fetched this way still contain the old scripts, so apply the edits describ
 
 **Content and icons**
 - **Icon:** `fab fa-css` exists in Font Awesome 6.7.1, so the `fa-css3-alt` fallback wasn't needed.
+- **Tech icons:** Node, Angular and the generic database icon are replaced by Rust (Font Awesome), Claude and PostgreSQL. Font Awesome has no Claude or PostgreSQL icon, so those two are inline SVG paths from Simple Icons 13.21.0 (CC0).
 - **Added labels:** the spec left the 404 line and link text open, so they are "The page you are looking for does not exist." and "Back to Home". Page meta descriptions and the "Skip to content" link are also new.
 - **Kept as written:** the fourth certificate says "22 September 2020" but its text says "10/22/2020". The original site has the same mismatch.
 

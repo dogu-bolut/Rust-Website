@@ -92,6 +92,13 @@
   user-select: none;
 }
 
+/* inline brand SVGs sized like the Font Awesome glyphs */
+.svg-icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
 /* 8 points on a circle of radius 46%, starting 22.5deg right of top */
 .float-icon.first   { left: 67.6%; top: 7.5%; }
 .float-icon.second  { left: 92.5%; top: 32.4%; }
