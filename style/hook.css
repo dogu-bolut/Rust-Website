@@ -25,36 +25,161 @@
   box-shadow: 0 0 0 3px rgba(255,140,0,.2);
 }
 
-/* ---------- hero: proof numbers */
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  justify-content: start;
-  gap: 8px 32px;
-  margin-top: 36px;
-  padding-top: 24px;
-  border-top: 1px solid var(--card-border);
+/* ---------- hero: tour card (home) */
+.tour-card {
+  margin-top: 28px;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,69,0,.14), transparent 60%),
+    var(--card);
+  border: 1px solid rgba(255,140,0,.35);
+  border-radius: 16px;
+  box-shadow: 0 12px 36px rgba(0,0,0,.35);
 }
 
-.hero-stats div {
+.tour-head {
   display: flex;
-  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.tour-kicker {
+  color: var(--color-dark-orange);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.tour-count {
+  color: var(--text-soft);
+  font-size: .75rem;
+  white-space: nowrap;
+}
+
+.tour-count strong {
+  color: var(--color-dark-orange);
+}
+
+.tour-title {
+  margin-block: 6px 16px;
+  color: var(--text);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.tour-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  list-style: none;
+}
+
+.tour-step {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 12px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  color: var(--text);
+  transition: border-color .2s ease, transform .2s ease, background-color .2s ease;
+}
+
+.tour-step:hover {
+  border-color: var(--color-dark-orange);
+  transform: translateY(-2px);
+}
+
+.tour-step-num {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(255,140,0,.12);
+  border-radius: 50%;
+  color: var(--color-pastel-orange);
+  font-size: .85rem;
+}
+
+.tour-step-text {
+  display: flex;
+  flex-direction: column;
   gap: 2px;
 }
 
-.hero-stats dd {
-  margin: 0;
-  color: var(--text);
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.1;
+.tour-step-text strong {
+  font-size: 1rem;
 }
 
-.hero-stats dt {
+.tour-step-text small {
   color: var(--text-soft);
-  font-size: .75rem;
-  letter-spacing: .06em;
+  font-size: .72rem;
+}
+
+.tour-step.next {
+  border-color: var(--color-dark-orange);
+  background: rgba(255,140,0,.07);
+}
+
+.tour-step.seen .tour-step-num {
+  background: var(--color-orange-red);
+  color: var(--text);
+}
+
+.tour-go {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 14px 20px;
+  background: var(--color-orange-red);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 20px var(--cta-glow);
+  color: var(--text);
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .04em;
   text-transform: uppercase;
+  transition: background-color .2s ease, gap .2s ease;
+}
+
+.tour-go:hover {
+  background: var(--color-tomato);
+  gap: 16px;
+}
+
+/* the card is the page's hook, so it gets the only ambient motion in the hero */
+@media (prefers-reduced-motion: no-preference) {
+  .tour-card:not(.complete) {
+    animation: tour-glow 3.2s ease-in-out infinite;
+  }
+
+  .tour-step.next .tour-step-num {
+    animation: tour-ping 2s ease-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explore-tracker,
+  .tour-step,
+  .tour-go {
+    transition: none;
+  }
+}
+
+@keyframes tour-glow {
+  0%, 100% { border-color: rgba(255,140,0,.25); box-shadow: 0 12px 36px rgba(0,0,0,.35); }
+  50% { border-color: rgba(255,140,0,.7); box-shadow: 0 12px 36px rgba(0,0,0,.35), 0 0 28px rgba(255,69,0,.22); }
+}
+
+@keyframes tour-ping {
+  0% { box-shadow: 0 0 0 0 rgba(255,140,0,.55); }
+  100% { box-shadow: 0 0 0 12px rgba(255,140,0,0); }
 }
 
 /* ---------- section lead under a heading */
@@ -97,6 +222,22 @@
 
 .experience-seen i {
   color: var(--color-dark-orange);
+}
+
+.experience-next {
+  padding: 4px 10px;
+  background: var(--color-orange-red);
+  border-radius: var(--radius-pill);
+  color: var(--text);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.experience-card.next {
+  border-color: rgba(255,140,0,.5);
+  box-shadow: 0 0 0 1px rgba(255,140,0,.25), 0 10px 30px var(--cta-glow);
 }
 
 .experience-card.seen {
@@ -280,8 +421,16 @@ a.next-up-card:hover .next-up-arrow {
 
 /* ---------- small screens */
 @media (max-width: 768px) {
-  .hero-stats {
-    grid-template-columns: repeat(2, auto);
+  .tour-card {
+    padding: 16px;
+  }
+
+  .tour-steps {
+    gap: 8px;
+  }
+
+  .tour-step {
+    padding: 10px;
   }
 
   .next-up-card {
@@ -327,8 +476,34 @@ a.next-up-card:hover .next-up-arrow {
   }
 }
 
+/* ---------- Netlify's "Powered by Netlify" badge
+   Netlify injects a 202x64 iframe (#nl-badge-frame) into the bottom-right
+   corner of free-plan sites, above everything else. Floating controls move
+   up to clear it, only when it is actually present. */
+body:has(#nl-badge-frame) {
+  --badge-clear: 80px;
+}
+
+body:has(#nl-badge-frame) .back-to-top {
+  bottom: var(--badge-clear);
+}
+
+@media (max-width: 768px) {
+  body:has(#nl-badge-frame) .explore-tracker {
+    bottom: var(--badge-clear);
+  }
+
+  body:has(#nl-badge-frame) .site-footer {
+    padding-bottom: 152px;
+  }
+}
+
 @media (max-width: 360px) {
   .tracker-count {
     font-size: .7rem;
+  }
+
+  .tour-step-text small {
+    display: none;
   }
 }

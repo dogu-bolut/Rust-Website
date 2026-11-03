@@ -119,8 +119,14 @@ Pages fetched this way still contain the old scripts, so apply the edits describ
 **Engagement hook**
 - **Progress tracker:** a floating pill (`ExploreTracker`) shows how many of the three experience pages the visitor has seen, with a step for each. Once all three are seen it becomes a "Seen it all? Let's talk" button to the booking link. Progress is kept in `localStorage` (`explored-v1`, in `src/progress.rs`); if storage is blocked, it only lasts for the visit.
 - **Next up:** each experience page ends with a card pointing to the next experience not yet seen, or the meeting and CV buttons once all are seen.
-- **Home proof:** an availability badge, numbers computed from the data (games, live websites, years in ERP since 2024, certificates), a count chip and a "Seen" marker on each experience card, and a lead line under "Experiences".
+- **Home tour card:** the home hero's main hook (`TourCard`). It lists the three experiences with their numbers, marks which are seen, and has one button that always leads to the next unseen page ("Start the tour", "Continue with Games", then the booking link). While the card is on screen the floating tracker hides, since it would say the same thing; an IntersectionObserver drives this.
+- **Home proof:** an availability badge, a count chip on each experience card, a "Seen" marker, a "Start here" marker on the next unseen card, and a lead line under "Experiences".
+- **Netlify badge:** on the free plan, Netlify adds a "Powered by Netlify" iframe (`#nl-badge-frame`, 202×64) in the bottom-right corner. Only when it is present (`body:has(#nl-badge-frame)`), back-to-top moves up at every width, and on screens up to 768px the tracker moves up too.
 - **New copy:** the home description, the availability line and the tracker and Next up wording are new, not from the original site.
+
+**Certificates and socials**
+- **Certificates:** a two-column grid of cards. Each has an icon for its kind (course, summer camp, hackathon), an orange date, a completion or participation chip, a cursor-following glow (the same `dom::track_glow` as the glow links) and a lift on hover. The content is unchanged.
+- **Social icons:** each has a 44px hit area that lifts, turns orange-red and glows on hover or keyboard focus.
 
 **Behaviour**
 - **Navbar height:** `<header id="home">` keeps its height when the bar goes fixed, so the page doesn't jump.

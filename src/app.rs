@@ -19,6 +19,8 @@ pub struct AppState {
     pub menu_open: RwSignal<bool>,
     pub scrolled: RwSignal<bool>,
     pub show_top: RwSignal<bool>,
+    /// The home tour card is on screen; the floating tracker would repeat it.
+    pub tour_visible: RwSignal<bool>,
 }
 
 #[component]
@@ -30,6 +32,7 @@ pub fn App() -> impl IntoView {
         menu_open: RwSignal::new(false),
         scrolled: RwSignal::new(false),
         show_top: RwSignal::new(false),
+        tour_visible: RwSignal::new(false),
     };
     provide_context(state);
     Explored::provide();

@@ -12,7 +12,7 @@ wasm-bindgen = "0.2"
 js-sys = "0.3"
 send_wrapper = "0.6"
 web-sys = { version = "0.3", features = [
-  "Window", "Document", "Element", "HtmlElement", "HtmlVideoElement", "HtmlImageElement", "HtmlLiElement",
+  "Window", "Document", "Element", "HtmlElement", "HtmlVideoElement", "HtmlImageElement", "HtmlLiElement", "HtmlDivElement",
   "DomRect", "DomTokenList", "MouseEvent", "KeyboardEvent", "Node", "NodeList",
   "ScrollIntoViewOptions", "ScrollBehavior", "ScrollLogicalPosition", "ScrollToOptions",
   "IntersectionObserver", "IntersectionObserverEntry", "IntersectionObserverInit",

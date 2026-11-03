@@ -20,7 +20,7 @@
 @media (max-width: 768px) {
   .welcome-container,
   .contact-grid,
-  .certificate-card {
+  .certificate-list {
     grid-template-columns: 1fr;
   }
 
@@ -54,7 +54,10 @@
   }
 
   .certificate-badge,
-  .certificate-details,
+  .certificate-details {
+    padding-inline: 18px;
+  }
+
   .experience-card,
   .tech-group {
     padding: 20px;

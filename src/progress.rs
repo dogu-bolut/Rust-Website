@@ -47,6 +47,13 @@ impl Explored {
         self.0.with_untracked(|seen| save(seen));
     }
 
+    /// The first experience not yet seen, from the start.
+    pub fn first_unseen(self) -> Option<(usize, &'static Experience)> {
+        (0..EXPERIENCES.len())
+            .find(|&i| !self.is_seen(i))
+            .map(|i| (i, &EXPERIENCES[i]))
+    }
+
     /// The first experience after `current` (wrapping) not yet seen.
     pub fn next_unseen(self, current: usize) -> Option<(usize, &'static Experience)> {
         let len = EXPERIENCES.len();

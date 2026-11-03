@@ -17,7 +17,7 @@ pub fn ExploreTracker() -> impl IntoView {
         <aside
             class="explore-tracker"
             class:complete=move || explored.all_seen()
-            class:hidden=move || state.menu_open.get()
+            class:hidden=move || state.menu_open.get() || state.tour_visible.get()
             aria-label="Your progress through my work"
         >
             <Show

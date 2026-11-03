@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{CtaButtons, SocialLinks};
+use crate::components::{CtaButtons, SocialLinks, TourCard};
 use crate::data::{PageIntro, SocialLink};
 
 /// Shared "welcome-section": text on the left, `children` on the right.
@@ -12,9 +12,9 @@ pub fn Hero(
     /// Small status line above the intro (home: availability).
     #[prop(optional)]
     badge: Option<&'static str>,
-    /// Proof numbers under the buttons, as (value, label).
+    /// Home only: the tour card that leads into the experiences.
     #[prop(optional)]
-    stats: Vec<(String, &'static str)>,
+    tour: bool,
     children: Children,
 ) -> impl IntoView {
     view! {
@@ -33,26 +33,9 @@ pub fn Hero(
                     <h6 class="intro">{intro.intro} <span class="highlight">{intro.highlight}</span></h6>
                     <h2 class="hero-title">{intro.title}</h2>
                     <p class="description">{intro.description}</p>
-                    {socials.map(|links| view! { <SocialLinks links=links/> })}
+                    {tour.then(|| view! { <TourCard/> })}
                     {show_cta.then(|| view! { <div class="hero-cta"><CtaButtons/></div> })}
-                    {(!stats.is_empty())
-                        .then(|| {
-                            view! {
-                                <dl class="hero-stats">
-                                    {stats
-                                        .into_iter()
-                                        .map(|(value, label)| {
-                                            view! {
-                                                <div>
-                                                    <dt>{label}</dt>
-                                                    <dd>{value}</dd>
-                                                </div>
-                                            }
-                                        })
-                                        .collect_view()}
-                                </dl>
-                            }
-                        })}
+                    {socials.map(|links| view! { <SocialLinks links=links/> })}
                 </div>
                 <div class="right-container">{children()}</div>
             </div>

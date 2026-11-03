@@ -87,7 +87,12 @@ pub fn track_glow(event: MouseEvent) {
     let Some(pill) = event
         .target()
         .and_then(|target| target.dyn_into::<Element>().ok())
-        .and_then(|target| target.closest(".glow-link").ok().flatten())
+        .and_then(|target| {
+            target
+                .closest(".glow-link, .certificate-card")
+                .ok()
+                .flatten()
+        })
         .and_then(|pill| pill.dyn_into::<HtmlElement>().ok())
     else {
         return;

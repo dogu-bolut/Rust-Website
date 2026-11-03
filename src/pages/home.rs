@@ -4,40 +4,32 @@ use leptos_router::components::A;
 
 use crate::components::{Contact, GlowLink, Hero, SectionHeading};
 use crate::data::{
-    Glyph, AVAILABILITY, CERTIFICATES, CERTIFICATES_HEADING, ERP_SINCE, EXPERIENCES,
-    EXPERIENCES_HEADING, EXPERIENCES_SUBHEADING, FLOATING_ICONS, GAMES, HOME_BLURB, HOME_INTRO,
+    experience_stat, Glyph, AVAILABILITY, CERTIFICATES, CERTIFICATES_HEADING, EXPERIENCES,
+    EXPERIENCES_HEADING, EXPERIENCES_SUBHEADING, FLOATING_ICONS, HOME_BLURB, HOME_INTRO,
     LEARN_MORE, META_HOME, PROFILE_ALT, PROFILE_IMAGE, SEEN_LABEL, SITE_TITLE, SOCIALS,
-    WEB_PROJECTS,
+    UP_NEXT_LABEL,
 };
 use crate::dom;
 use crate::progress::Explored;
 
-/// Headline number for an experience card, from the data it summarises.
-fn experience_stat(route: &str) -> String {
-    match route {
-        "/web" => format!("{} live websites", WEB_PROJECTS.len()),
-        "/games" => format!("{} games", GAMES.len()),
-        _ => format!("since {ERP_SINCE}"),
+/// Icon for a certificate, by what kind of event earned it.
+fn certificate_icon(kind_label: &str) -> &'static str {
+    match kind_label {
+        "HACKATHON" => "fa-solid fa-bolt",
+        "SUMMER CAMP" => "fa-solid fa-campground",
+        _ => "fa-solid fa-graduation-cap",
     }
 }
 
 #[component]
 pub fn HomePage() -> impl IntoView {
     let explored = Explored::get();
-    let erp_years = dom::current_year()
-        .saturating_sub(ERP_SINCE.parse().unwrap_or(2024))
-        .max(1);
-    let stats = vec![
-        (GAMES.len().to_string(), "games made"),
-        (WEB_PROJECTS.len().to_string(), "live websites"),
-        (format!("{erp_years}+ yrs"), "in ERP"),
-        (CERTIFICATES.len().to_string(), "certificates"),
-    ];
+    let is_next = move |i: usize| explored.first_unseen().map(|(n, _)| n) == Some(i);
 
     view! {
         <Title text=SITE_TITLE/>
         <Meta name="description" content=META_HOME/>
-        <Hero intro=HOME_INTRO socials=SOCIALS show_cta=true badge=AVAILABILITY stats=stats>
+        <Hero intro=HOME_INTRO socials=SOCIALS show_cta=true badge=AVAILABILITY tour=true>
             <div class="profile">
                 <img src=PROFILE_IMAGE alt=PROFILE_ALT/>
                 <div class="features" aria-hidden="true">
@@ -75,7 +67,11 @@ pub fn HomePage() -> impl IntoView {
                         .enumerate()
                         .map(|(i, experience)| {
                             view! {
-                                <article class="experience-card" class:seen=move || explored.is_seen(i)>
+                                <article
+                                    class="experience-card"
+                                    class:seen=move || explored.is_seen(i)
+                                    class:next=move || is_next(i)
+                                >
                                     <div class="experience-meta">
                                         <span class="experience-stat">{experience_stat(experience.route)}</span>
                                         <Show when=move || explored.is_seen(i)>
@@ -83,6 +79,13 @@ pub fn HomePage() -> impl IntoView {
                                                 <i class="fa-solid fa-check" aria-hidden="true"></i>
                                                 " "
                                                 {SEEN_LABEL}
+                                            </span>
+                                        </Show>
+                                        <Show when=move || is_next(i)>
+                                            <span class="experience-next">
+                                                <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                                                " "
+                                                {UP_NEXT_LABEL}
                                             </span>
                                         </Show>
                                     </div>
@@ -107,18 +110,30 @@ pub fn HomePage() -> impl IntoView {
                     {CERTIFICATES
                         .iter()
                         .map(|certificate| {
+                            let completion = certificate.certificate_kind.starts_with("Completion");
                             view! {
-                                <article class="certificate-card">
+                                <article class="certificate-card" on:mousemove=dom::track_glow>
                                     <div class="certificate-badge">
-                                        <h2>{certificate.badge}</h2>
-                                        <hr/>
-                                        <p>{certificate.category}</p>
-                                        <p>{certificate.kind_label}</p>
+                                        <span class="certificate-icon" aria-hidden="true">
+                                            <i class=certificate_icon(certificate.kind_label)></i>
+                                        </span>
+                                        <div class="certificate-name">
+                                            <h2>{certificate.badge}</h2>
+                                            <p>{certificate.category}</p>
+                                            <p>{certificate.kind_label}</p>
+                                        </div>
                                     </div>
                                     <div class="certificate-details">
-                                        <h2>{certificate.date}</h2>
-                                        <hr/>
-                                        <h3>{certificate.certificate_kind}</h3>
+                                        <div class="certificate-meta">
+                                            <h2 class="certificate-date">
+                                                <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                                " "
+                                                {certificate.date}
+                                            </h2>
+                                            <h3 class="certificate-kind" class:completion=completion>
+                                                {certificate.certificate_kind}
+                                            </h3>
+                                        </div>
                                         <p>{certificate.description}</p>
                                     </div>
                                 </article>

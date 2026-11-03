@@ -220,7 +220,7 @@ pub const HOME_INTRO: PageIntro = PageIntro {
     intro: "Hi, I'm ",
     highlight: "Dogu Bolut",
     title: "Software Developer",
-    description: "I build across three worlds: websites people use, games people play, and the ERP systems businesses run on. Every project below is real and live. Take the tour, and if you like what you see, let's build something together.",
+    description: "I build websites people use, games people play, and the ERP systems businesses run on. Everything here is real and live, so see it for yourself.",
 };
 
 pub const PROFILE_IMAGE: &str = "/assets/img/logofalan.png";
@@ -268,6 +268,14 @@ pub const EXPERIENCES_HEADING: &str = "Experiences";
 pub const EXPERIENCES_SUBHEADING: &str =
     "Three paths, one developer. See all three, then let's talk.";
 pub const SEEN_LABEL: &str = "Seen";
+pub const UP_NEXT_LABEL: &str = "Start here";
+
+// home hero tour card
+pub const TOUR_KICKER: &str = "The 2-minute tour";
+pub const TOUR_TITLE: &str = "Three worlds. Pick one, see all three.";
+pub const TOUR_START: &str = "Start the tour";
+pub const TOUR_CONTINUE: &str = "Continue with";
+pub const TOUR_DONE: &str = "You've seen it all. Let's talk";
 
 // progress tracker and "Next up"
 pub const TRACKER_LABEL: &str = "Explored";
@@ -277,6 +285,15 @@ pub const NEXT_UP_DONE_TITLE: &str = "You've seen all three. Let's work together
 pub const NEXT_UP_DONE_TEXT: &str =
     "Web, games and ERP: if any of it fits what you're building, book a call or grab my CV.";
 pub const LEARN_MORE: &str = "Learn more";
+
+/// Headline number for an experience, from the data it summarises.
+pub fn experience_stat(route: &str) -> String {
+    match route {
+        "/web" => format!("{} live websites", WEB_PROJECTS.len()),
+        "/games" => format!("{} games", GAMES.len()),
+        _ => format!("ERP since {ERP_SINCE}"),
+    }
+}
 
 pub const EXPERIENCES: &[Experience] = &[
     Experience {

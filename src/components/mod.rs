@@ -13,6 +13,7 @@ mod showcase;
 mod side_menu;
 mod social_links;
 mod tech_stack;
+mod tour_card;
 
 pub use back_to_top::BackToTop;
 pub use contact::Contact;
@@ -29,3 +30,4 @@ pub use showcase::Showcase;
 pub use side_menu::SideMenu;
 pub use social_links::SocialLinks;
 pub use tech_stack::TechStack;
+pub use tour_card::TourCard;
