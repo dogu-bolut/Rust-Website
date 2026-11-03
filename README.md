@@ -116,6 +116,12 @@ Pages fetched this way still contain the old scripts, so apply the edits describ
 - **Experience heroes:** the screenshot stack (Web), gameplay video (Games) and tilting illustration (ERP) are replaced by one shared app-window component, `Showcase`. Web shows a browser that cycles through the work samples; clicking it opens the image viewer. Games shows a library grid of all nine covers, each scrolling to its card. ERP shows the eight modules wired to one core, with a signal passing between them. The 42 MB `games-reel.mp4` and `erpwelcome.png` are no longer shipped; the originals are still in the old Portfolio repo.
 - **Warmer hero:** the blue glow in the hero background is gone.
 
+**Engagement hook**
+- **Progress tracker:** a floating pill (`ExploreTracker`) shows how many of the three experience pages the visitor has seen, with a step for each. Once all three are seen it becomes a "Seen it all? Let's talk" button to the booking link. Progress is kept in `localStorage` (`explored-v1`, in `src/progress.rs`); if storage is blocked, it only lasts for the visit.
+- **Next up:** each experience page ends with a card pointing to the next experience not yet seen, or the meeting and CV buttons once all are seen.
+- **Home proof:** an availability badge, numbers computed from the data (games, live websites, years in ERP since 2024, certificates), a count chip and a "Seen" marker on each experience card, and a lead line under "Experiences".
+- **New copy:** the home description, the availability line and the tracker and Next up wording are new, not from the original site.
+
 **Behaviour**
 - **Navbar height:** `<header id="home">` keeps its height when the bar goes fixed, so the page doesn't jump.
 - **Meta description:** the static tag in `index.html` serves crawlers without WASM. The app removes it on start so each page's `<Meta>` is the only one.

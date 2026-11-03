@@ -4,7 +4,7 @@ use send_wrapper::SendWrapper;
 use wasm_bindgen::{closure::Closure, JsCast, JsValue};
 use web_sys::{IntersectionObserver, IntersectionObserverEntry, IntersectionObserverInit};
 
-use crate::components::{Contact, Hero, SectionHeading, Showcase, TechStack};
+use crate::components::{Contact, Hero, NextUp, SectionHeading, Showcase, TechStack};
 use crate::data::{
     ERP_BLURB, ERP_CORE, ERP_INTRO, ERP_MODULES, ERP_SHOWCASE_CAPTION, ERP_SHOWCASE_TITLE,
     ERP_TECH, JOURNEY_HEADING, JOURNEY_STEPS, META_ERP,
@@ -118,6 +118,7 @@ pub fn ErpPage() -> impl IntoView {
         </section>
 
         <TechStack groups=ERP_TECH/>
+        <NextUp current=2/>
         <Contact blurb=ERP_BLURB/>
     }
 }

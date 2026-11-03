@@ -6,9 +6,10 @@ use leptos_router::{
     path,
 };
 
-use crate::components::{BackToTop, Footer, Navbar, SideMenu};
+use crate::components::{BackToTop, ExploreTracker, Footer, Navbar, SideMenu};
 use crate::dom;
 use crate::pages::{ErpPage, GamesPage, HomePage, NotFound, WebPage};
+use crate::progress::Explored;
 
 const NAV_HEIGHT: f64 = 68.0;
 const BACK_TO_TOP_AFTER: f64 = 500.0;
@@ -31,6 +32,7 @@ pub fn App() -> impl IntoView {
         show_top: RwSignal::new(false),
     };
     provide_context(state);
+    Explored::provide();
 
     let update_scroll = move || {
         let y = window().scroll_y().unwrap_or(0.0);
@@ -52,10 +54,11 @@ pub fn App() -> impl IntoView {
 #[component]
 fn Shell() -> impl IntoView {
     let state = expect_context::<AppState>();
+    let explored = Explored::get();
     let pathname = use_location().pathname;
 
     Effect::new(move |_| {
-        pathname.track();
+        explored.visit(&pathname.get());
         state.menu_open.set(false);
         dom::jump_to_top();
     });
@@ -81,6 +84,7 @@ fn Shell() -> impl IntoView {
                 <Route path=path!("/erp") view=ErpPage/>
             </Routes>
         </main>
+        <ExploreTracker/>
         <BackToTop/>
         <Footer/>
     }

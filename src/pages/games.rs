@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 use leptos_meta::{Meta, Title};
 
-use crate::components::{Contact, Hero, SectionHeading, Showcase, TechStack};
+use crate::components::{Contact, Hero, NextUp, SectionHeading, Showcase, TechStack};
 use crate::data::{
     GAMES, GAMES_BLURB, GAMES_HEADING, GAMES_HERO_LINKS, GAMES_INTRO, GAMES_SHOWCASE_CAPTION,
     GAMES_SHOWCASE_TITLE, GAMES_TECH, LEGAL_INFO, META_GAMES,
@@ -107,6 +107,7 @@ pub fn GamesPage() -> impl IntoView {
         </section>
 
         <TechStack groups=GAMES_TECH/>
+        <NextUp current=1/>
         <Contact blurb=GAMES_BLURB/>
     }
 }

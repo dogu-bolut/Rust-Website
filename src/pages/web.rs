@@ -4,7 +4,7 @@ use leptos::prelude::*;
 use leptos_meta::{Meta, Title};
 
 use crate::components::{
-    trigger_id, Contact, Hero, ImageModal, SectionHeading, Showcase, TechStack,
+    trigger_id, Contact, Hero, ImageModal, NextUp, SectionHeading, Showcase, TechStack,
 };
 use crate::data::{
     GO_TO_WEBSITE, META_WEB, PROJECTS_HEADING, WEB_BLURB, WEB_HERO_LINKS, WEB_INTRO, WEB_PROJECTS,
@@ -133,6 +133,7 @@ pub fn WebPage() -> impl IntoView {
         </section>
 
         <TechStack groups=WEB_TECH/>
+        <NextUp current=0/>
         <Contact blurb=WEB_BLURB/>
         <ImageModal images=WORK_SAMPLES index=open_image/>
     }

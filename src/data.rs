@@ -41,6 +41,9 @@ pub const POSTGRESQL_PATH: &str = "M23.5594 14.7228a.5269.5269 0 0 0-.0563-.1191
 
 #[derive(Clone, Copy)]
 pub struct Experience {
+    /// Short name used by the progress tracker and "Next up" card.
+    pub short: &'static str,
+    pub icon: &'static str,
     pub title: &'static str,
     pub description: &'static str,
     pub image: &'static str,
@@ -217,7 +220,7 @@ pub const HOME_INTRO: PageIntro = PageIntro {
     intro: "Hi, I'm ",
     highlight: "Dogu Bolut",
     title: "Software Developer",
-    description: "This website shows my portfolio. Feel free to explore the links below, where you can find details about almost every project I've worked on. If you have any questions, please don't hesitate to reach out to me via email.",
+    description: "I build across three worlds: websites people use, games people play, and the ERP systems businesses run on. Every project below is real and live. Take the tour, and if you like what you see, let's build something together.",
 };
 
 pub const PROFILE_IMAGE: &str = "/assets/img/logofalan.png";
@@ -258,23 +261,43 @@ pub const FLOATING_ICONS: &[FloatingIcon] = &[
     },
 ];
 
+pub const AVAILABILITY: &str = "Available for full-time roles & collaborations";
+pub const ERP_SINCE: &str = "2024";
+
 pub const EXPERIENCES_HEADING: &str = "Experiences";
+pub const EXPERIENCES_SUBHEADING: &str =
+    "Three paths, one developer. See all three, then let's talk.";
+pub const SEEN_LABEL: &str = "Seen";
+
+// progress tracker and "Next up"
+pub const TRACKER_LABEL: &str = "Explored";
+pub const TRACKER_DONE: &str = "Seen it all? Let's talk";
+pub const NEXT_UP_KICKER: &str = "Keep exploring";
+pub const NEXT_UP_DONE_TITLE: &str = "You've seen all three. Let's work together.";
+pub const NEXT_UP_DONE_TEXT: &str =
+    "Web, games and ERP: if any of it fits what you're building, book a call or grab my CV.";
 pub const LEARN_MORE: &str = "Learn more";
 
 pub const EXPERIENCES: &[Experience] = &[
     Experience {
+        short: "Web",
+        icon: "fa-solid fa-code",
         title: "Web Development",
         description: "Building responsive modern websites using HTML, CSS, and JavaScript.",
         image: "/assets/img/web-development.png",
         route: "/web",
     },
     Experience {
+        short: "Games",
+        icon: "fa-solid fa-gamepad",
         title: "Game Development",
         description: "Creating games in Unity with smooth mechanics and engaging design.",
         image: "/assets/img/game_console.png",
         route: "/games",
     },
     Experience {
+        short: "ERP",
+        icon: "fa-solid fa-diagram-project",
         title: "ERP",
         description: "Implement ERP systems to streamline business processes and efficiency.",
         image: "/assets/img/graphics-design.png",

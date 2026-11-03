@@ -4,16 +4,40 @@ use leptos_router::components::A;
 
 use crate::components::{Contact, GlowLink, Hero, SectionHeading};
 use crate::data::{
-    Glyph, CERTIFICATES, CERTIFICATES_HEADING, EXPERIENCES, EXPERIENCES_HEADING, FLOATING_ICONS,
-    HOME_BLURB, HOME_INTRO, LEARN_MORE, META_HOME, PROFILE_ALT, PROFILE_IMAGE, SITE_TITLE, SOCIALS,
+    Glyph, AVAILABILITY, CERTIFICATES, CERTIFICATES_HEADING, ERP_SINCE, EXPERIENCES,
+    EXPERIENCES_HEADING, EXPERIENCES_SUBHEADING, FLOATING_ICONS, GAMES, HOME_BLURB, HOME_INTRO,
+    LEARN_MORE, META_HOME, PROFILE_ALT, PROFILE_IMAGE, SEEN_LABEL, SITE_TITLE, SOCIALS,
+    WEB_PROJECTS,
 };
+use crate::dom;
+use crate::progress::Explored;
+
+/// Headline number for an experience card, from the data it summarises.
+fn experience_stat(route: &str) -> String {
+    match route {
+        "/web" => format!("{} live websites", WEB_PROJECTS.len()),
+        "/games" => format!("{} games", GAMES.len()),
+        _ => format!("since {ERP_SINCE}"),
+    }
+}
 
 #[component]
 pub fn HomePage() -> impl IntoView {
+    let explored = Explored::get();
+    let erp_years = dom::current_year()
+        .saturating_sub(ERP_SINCE.parse().unwrap_or(2024))
+        .max(1);
+    let stats = vec![
+        (GAMES.len().to_string(), "games made"),
+        (WEB_PROJECTS.len().to_string(), "live websites"),
+        (format!("{erp_years}+ yrs"), "in ERP"),
+        (CERTIFICATES.len().to_string(), "certificates"),
+    ];
+
     view! {
         <Title text=SITE_TITLE/>
         <Meta name="description" content=META_HOME/>
-        <Hero intro=HOME_INTRO socials=SOCIALS show_cta=true>
+        <Hero intro=HOME_INTRO socials=SOCIALS show_cta=true badge=AVAILABILITY stats=stats>
             <div class="profile">
                 <img src=PROFILE_IMAGE alt=PROFILE_ALT/>
                 <div class="features" aria-hidden="true">
@@ -44,12 +68,24 @@ pub fn HomePage() -> impl IntoView {
         <section id="experiences" class="section bg-0">
             <div class="container">
                 <SectionHeading text=EXPERIENCES_HEADING/>
+                <p class="section-lead">{EXPERIENCES_SUBHEADING}</p>
                 <div class="experience-grid">
                     {EXPERIENCES
                         .iter()
-                        .map(|experience| {
+                        .enumerate()
+                        .map(|(i, experience)| {
                             view! {
-                                <article class="experience-card">
+                                <article class="experience-card" class:seen=move || explored.is_seen(i)>
+                                    <div class="experience-meta">
+                                        <span class="experience-stat">{experience_stat(experience.route)}</span>
+                                        <Show when=move || explored.is_seen(i)>
+                                            <span class="experience-seen">
+                                                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                                                " "
+                                                {SEEN_LABEL}
+                                            </span>
+                                        </Show>
+                                    </div>
                                     <img src=experience.image alt=experience.title loading="lazy"/>
                                     <h2>
                                         <A href=experience.route>{experience.title}</A>
