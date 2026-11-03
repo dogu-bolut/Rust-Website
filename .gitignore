@@ -1,0 +1,7 @@
+/target
+/dist
+/.bin
+.DS_Store
+
+# Local Netlify folder
+.netlify

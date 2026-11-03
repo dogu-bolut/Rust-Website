@@ -1,0 +1,318 @@
+/* Shared hero visual: one app window on every experience page. */
+.showcase {
+  width: 100%;
+  max-width: var(--hero-visual);
+  margin: 0;
+}
+
+.showcase-window {
+  overflow: hidden;
+  background: linear-gradient(180deg, #1c1c1c, #141414);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgba(255,140,0,.06),
+    0 24px 60px rgba(0,0,0,.55),
+    0 0 80px rgba(255,69,0,.08);
+}
+
+.showcase-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,.03);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.showcase-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.showcase-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #3a3a3a;
+}
+
+.showcase-dots span:first-child {
+  background: var(--color-orange-red);
+}
+
+.showcase-title {
+  flex: 1;
+  padding: 4px 12px;
+  overflow: hidden;
+  background: rgba(0,0,0,.35);
+  border-radius: var(--radius-pill);
+  color: var(--text-soft);
+  font-size: .75rem;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.showcase-body {
+  padding: 14px;
+}
+
+.showcase-caption {
+  margin-top: 14px;
+  color: var(--text-soft);
+  font-size: .8rem;
+  letter-spacing: .08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ---------- Web: browser with cycling screenshots */
+.showcase-browser .showcase-body {
+  padding: 0;
+}
+
+.browser-screen {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 2548 / 1345;
+  padding: 0;
+  overflow: hidden;
+  background: #0d0d0d;
+  border: none;
+  cursor: zoom-in;
+}
+
+.browser-screen img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+
+.browser-screen img.active {
+  opacity: 1;
+}
+
+.browser-zoom {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(0,0,0,.6);
+  border-radius: 50%;
+  color: var(--color-pastel-orange);
+  font-size: .8rem;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.browser-screen:hover .browser-zoom,
+.browser-screen:focus-visible .browser-zoom {
+  opacity: 1;
+}
+
+.browser-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 12px;
+  border-top: 1px solid var(--card-border);
+}
+
+.browser-tab {
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: none;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  opacity: .45;
+  transition: opacity .2s ease, border-color .2s ease;
+}
+
+.browser-tab img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.browser-tab:hover,
+.browser-tab.active {
+  opacity: 1;
+}
+
+.browser-tab.active {
+  border-color: var(--color-dark-orange);
+}
+
+/* ---------- Games: library grid of every cover */
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  list-style: none;
+}
+
+.library-tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  outline-offset: 2px;
+}
+
+.library-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease, filter .35s ease;
+  filter: saturate(.85) brightness(.85);
+}
+
+.library-name {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 18px 8px 6px;
+  background: linear-gradient(transparent, rgba(0,0,0,.85));
+  color: var(--text);
+  font-size: .7rem;
+  font-weight: 600;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.library-tile:hover img,
+.library-tile:focus-visible img {
+  transform: scale(1.06);
+  filter: none;
+}
+
+.library-tile:hover .library-name,
+.library-tile:focus-visible .library-name {
+  opacity: 1;
+  transform: none;
+}
+
+.library-tile:focus-visible {
+  outline: 2px solid var(--color-dark-orange);
+}
+
+/* ---------- ERP: modules wired to one core */
+.showcase-erp .showcase-body {
+  padding: 22px 16px;
+}
+
+.erp-map {
+  position: relative;
+}
+
+.erp-modules {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  column-gap: 96px;
+  row-gap: 12px;
+  list-style: none;
+}
+
+.erp-module {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  font-size: .78rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.erp-module i {
+  width: 18px;
+  color: var(--color-pastel-orange);
+  text-align: center;
+}
+
+/* connector from each module towards the core */
+.erp-module::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,140,0,.45), rgba(255,140,0,.1));
+}
+
+.erp-module:nth-child(-n+4)::after {
+  left: 100%;
+}
+
+.erp-module:nth-child(n+5)::after {
+  right: 100%;
+  transform: scaleX(-1);
+}
+
+.erp-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  width: 76px;
+  height: 76px;
+  background: radial-gradient(circle at 30% 30%, #2a1a10, #140c08);
+  border: 1px solid rgba(255,140,0,.5);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(255,69,0,.25);
+  color: var(--color-dark-orange);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  transform: translate(-50%, -50%);
+  align-content: center;
+}
+
+.erp-core i {
+  font-size: 1.2rem;
+}
+
+/* narrow screens: modules stack around a core shown on top */
+@media (max-width: 480px) {
+  .erp-map {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .erp-core {
+    position: static;
+    transform: none;
+  }
+
+  .erp-modules {
+    width: 100%;
+    column-gap: 10px;
+  }
+
+  .erp-module::after {
+    display: none;
+  }
+}

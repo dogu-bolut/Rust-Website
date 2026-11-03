@@ -1,0 +1,16 @@
+/*
+ * Trunk does not bundle local @imports, so index.html links each stylesheet in order:
+ * tokens → base → navbar → hero → sections → cards → modal → contact → footer →
+ * animations → responsive → main.
+ *
+ * This file loads last and holds only global overrides.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: .01ms !important;
+    animation: none !important;
+  }
+}

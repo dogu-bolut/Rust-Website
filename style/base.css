@@ -1,0 +1,98 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-0);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: clip;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure {
+  margin: 0;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-classic-orange);
+  outline-offset: 3px;
+}
+
+main:focus {
+  outline: none;
+}
+
+main.blurred {
+  filter: blur(4px);
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 10001;
+  padding: 8px 16px;
+  background: var(--color-orange-red);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.container {
+  width: var(--container);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: 80px;
+  scroll-margin-top: calc(var(--nav-h) + 12px);
+}
+
+/* in-page targets below a section heading (game cards from the library grid) */
+.game-card {
+  scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+
+.bg-0 {
+  background: var(--bg-0);
+}
+
+.bg-1 {
+  background: var(--bg-1);
+}

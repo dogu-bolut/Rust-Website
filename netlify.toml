@@ -1,0 +1,29 @@
+[build]
+  publish = "dist"
+  command = """
+    rustup toolchain install stable --profile minimal && \
+    rustup target add wasm32-unknown-unknown && \
+    mkdir -p .bin && \
+    curl -sSL https://github.com/trunk-rs/trunk/releases/download/v0.21.14/trunk-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C .bin && \
+    ./.bin/trunk build --release
+  """
+
+[build.environment]
+  RUST_LOG = "warn"
+
+[[headers]]
+  for = "/*.wasm"
+  [headers.values]
+    Content-Type = "application/wasm"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

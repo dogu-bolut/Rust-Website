@@ -1,0 +1,95 @@
+.welcome-section {
+  display: flex;
+  align-items: center;
+  min-height: 90vh;
+  padding-block: 48px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,140,0,.07), transparent 45%),
+    radial-gradient(circle at 80% 45%, rgba(255,69,0,.08), transparent 45%),
+    var(--bg-1);
+}
+
+.welcome-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 64px;
+  width: var(--container);
+  margin-inline: auto;
+}
+
+.intro {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.highlight {
+  color: var(--color-orange-red);
+}
+
+.hero-title {
+  margin-block: 8px 16px;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.description {
+  color: var(--text-muted);
+}
+
+.social-media {
+  display: flex;
+  gap: 18px;
+  margin-top: 24px;
+  font-size: 1.6rem;
+}
+
+.social-media a {
+  color: var(--color-pastel-orange);
+}
+
+.social-media a:hover {
+  color: var(--color-classic-orange);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.right-container {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+/* Home: profile image with floating icons */
+.profile {
+  position: relative;
+  width: min(300px, 100%);
+}
+
+.profile > img {
+  width: 100%;
+}
+
+.float-icon {
+  position: absolute;
+  font-size: 20px;
+  color: var(--color-pastel-orange);
+  opacity: .45;
+  user-select: none;
+}
+
+.float-icon.first   { top: 72%;  left: 4%; }
+.float-icon.second  { top: 66%;  right: 4%; }
+.float-icon.third   { top: 34%;  left: -4%; }
+.float-icon.fourth  { top: 26%;  right: 2%; }
+.float-icon.fifth   { top: 6%;   left: 14%; }
+.float-icon.sixth   { top: 90%;  right: 26%; }
+.float-icon.seventh { top: 92%;  left: 30%; }
+.float-icon.eighth  { top: -2%;  right: 34%; }

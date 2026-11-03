@@ -1,0 +1,30 @@
+.site-footer {
+  padding: 24px 16px;
+  background: var(--bg-1);
+  color: var(--text-dim);
+  font-size: .9rem;
+  text-align: center;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  background: var(--color-orange-red);
+  border: none;
+  border-radius: 50%;
+  color: var(--text);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+
+.back-to-top.show-link {
+  opacity: 1;
+  visibility: visible;
+}

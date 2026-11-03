@@ -1,0 +1,159 @@
+body{
+  background-color: #222;
+}
+
+.privacy-policy {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px;
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.7;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.privacy-policy header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
+
+.privacy-policy h1,
+.privacy-policy h2,
+.privacy-policy h3 {
+  color: var(--color-dark-orange);
+  margin-top: 2rem;
+  font-weight: 700;
+}
+
+.privacy-policy h1 {
+  font-size: 32px;
+  margin-bottom: 1rem;
+}
+
+.privacy-policy h2 {
+  font-size: 24px;
+}
+
+.privacy-policy h3 {
+  font-size: 20px;
+}
+
+.privacy-policy p {
+  margin-bottom: 1.2rem;
+}
+
+.privacy-policy a {
+  color: var(--color-pastel-orange);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.privacy-policy a:hover,
+.privacy-policy a:focus {
+  color: var(--color-dark-orange);
+  border-bottom-color: var(--color-dark-orange);
+  outline: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Lists */
+.privacy-policy ul {
+  padding-left: 20px;
+  margin: 10px 0 20px;
+}
+
+.privacy-policy ul li {
+  margin-bottom: 6px;
+  list-style: disc;
+}
+
+.privacy-policy footer {
+  background-color: #111;
+  margin-top: 40px;
+  padding-top: 20px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* Divider */
+.privacy-policy hr {
+  border: none;
+  height: 1px;
+  background-color: #eee;
+  margin: 40px 0;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .privacy-policy {
+    padding: 30px 15px;
+  }
+
+  .privacy-policy h1 {
+    font-size: 22px;
+  }
+
+  .privacy-policy h2 {
+    font-size: 20px;
+  }
+
+  .privacy-policy h3 {
+    font-size: 16px;
+  }
+}
+
+.btn-back-to-games {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: transparent;
+  color: var(--color-dark-orange);
+  font-weight: 500;
+  font-size: 15px;
+  border: 1px solid var(--color-dark-orange);
+  border-radius: 20px;
+  text-decoration: none;
+  text-transform: none;
+  box-shadow: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* The back control is a link, so it must out-rank the generic ".privacy-policy a" rule. */
+.privacy-policy a.btn-back-to-games {
+  color: var(--color-dark-orange);
+  font-weight: 500;
+  line-height: normal;
+  border: 1px solid var(--color-dark-orange);
+}
+
+.privacy-policy a.btn-back-to-games:focus-visible {
+  outline: 2px solid var(--color-dark-orange);
+  outline-offset: 3px;
+}
+
+.btn-back-to-games i {
+  transition: transform 0.2s ease;
+}
+
+.btn-back-to-games:hover {
+  background-color: var(--color-dark-orange);
+  color: white !important;
+  border-color: var(--color-dark-orange);
+}
+
+.btn-back-to-games:hover i {
+  transform: translateX(4px);
+}

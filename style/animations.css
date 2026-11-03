@@ -1,0 +1,52 @@
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes twinkle     { 0%, 100% { opacity: .15; } 50% { opacity: .55; } }
+@keyframes fadeInUp    { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes signal      { 0%, 14%, 100% { border-color: var(--card-border); box-shadow: none; }
+                         7%           { border-color: rgba(255,140,0,.7); box-shadow: 0 0 16px rgba(255,69,0,.2); } }
+@keyframes bounce      { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .left-container {
+    animation: slideInLeft .8s ease-out both;
+  }
+
+  .float-icon {
+    animation: twinkle 6s ease-in-out infinite both;
+  }
+
+  .float-icon.first   { animation-duration: 4s; }
+  .float-icon.second  { animation-duration: 3s; animation-delay: .4s; }
+  .float-icon.third   { animation-duration: 7s; animation-delay: .8s; }
+  .float-icon.fourth  { animation-duration: 4s; animation-delay: 1.2s; }
+  .float-icon.fifth   { animation-duration: 6s; animation-delay: 1.6s; }
+  .float-icon.sixth   { animation-duration: 8s; animation-delay: 2s; }
+  .float-icon.seventh { animation-duration: 5s; animation-delay: 2.4s; }
+  .float-icon.eighth  { animation-duration: 9s; animation-delay: 2.8s; }
+
+  /* ERP: a signal travels from module to module, one per second */
+  .erp-module {
+    animation: signal 8s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 1s);
+  }
+
+  .glow-link::after {
+    transition: left .6s ease;
+  }
+
+  .glow-link:hover::after {
+    left: 120%;
+  }
+
+  .back-to-top.show-link {
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  .story-step {
+    opacity: 0;
+  }
+
+  .story-step.visible {
+    animation: fadeInUp 1s forwards;
+    animation-delay: calc(var(--i) * .8s);
+  }
+}
