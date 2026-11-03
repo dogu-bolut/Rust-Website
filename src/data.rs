@@ -134,6 +134,9 @@ pub const FORM_NAME_PLACEHOLDER: &str = "Full Name";
 pub const FORM_EMAIL_PLACEHOLDER: &str = "Corporate Email";
 pub const FORM_MESSAGE_PLACEHOLDER: &str = "Your Message";
 pub const FORM_SUBMIT: &str = "Submit";
+pub const FORM_TITLE: &str = "Send a message";
+pub const FORM_NOTE: &str = "I usually reply within 1–2 days";
+pub const FORM_PRIVACY: &str = "Your details are only used to reply to you.";
 
 pub const THANKS_TITLE: &str = "Message sent. Thank you!";
 pub const THANKS_TEXT: &str =

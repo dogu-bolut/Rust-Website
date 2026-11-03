@@ -3,7 +3,8 @@ use leptos::prelude::*;
 use crate::components::SectionHeading;
 use crate::data::{
     CONTACT_HEADING, CONTACT_ITEMS, CONTACT_SUBHEADING, FORM_ACTION, FORM_EMAIL_PLACEHOLDER,
-    FORM_HONEYPOT, FORM_MESSAGE_PLACEHOLDER, FORM_NAME, FORM_NAME_PLACEHOLDER, FORM_SUBMIT,
+    FORM_HONEYPOT, FORM_MESSAGE_PLACEHOLDER, FORM_NAME, FORM_NAME_PLACEHOLDER, FORM_NOTE,
+    FORM_PRIVACY, FORM_SUBMIT, FORM_TITLE,
 };
 
 #[component]
@@ -52,28 +53,55 @@ pub fn Contact(blurb: &'static str) -> impl IntoView {
                                 <input name=FORM_HONEYPOT tabindex="-1" autocomplete="off"/>
                             </label>
                         </p>
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder=FORM_NAME_PLACEHOLDER
-                            aria-label=FORM_NAME_PLACEHOLDER
-                            required=true
-                        />
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder=FORM_EMAIL_PLACEHOLDER
-                            aria-label=FORM_EMAIL_PLACEHOLDER
-                            required=true
-                        />
-                        <textarea
-                            name="message"
-                            rows="6"
-                            placeholder=FORM_MESSAGE_PLACEHOLDER
-                            aria-label=FORM_MESSAGE_PLACEHOLDER
-                            required=true
-                        ></textarea>
-                        <button type="submit" class="btn-submit">{FORM_SUBMIT}</button>
+                        <div class="form-head">
+                            <h3>{FORM_TITLE}</h3>
+                            <p>
+                                <span class="form-dot" aria-hidden="true"></span>
+                                {FORM_NOTE}
+                            </p>
+                        </div>
+                        <div class="form-row">
+                            <div class="field">
+                                <i class="fa-regular fa-user" aria-hidden="true"></i>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder=FORM_NAME_PLACEHOLDER
+                                    aria-label=FORM_NAME_PLACEHOLDER
+                                    autocomplete="name"
+                                    required=true
+                                />
+                            </div>
+                            <div class="field">
+                                <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder=FORM_EMAIL_PLACEHOLDER
+                                    aria-label=FORM_EMAIL_PLACEHOLDER
+                                    autocomplete="email"
+                                    required=true
+                                />
+                            </div>
+                        </div>
+                        <div class="field field-area">
+                            <i class="fa-regular fa-message" aria-hidden="true"></i>
+                            <textarea
+                                name="message"
+                                rows="6"
+                                placeholder=FORM_MESSAGE_PLACEHOLDER
+                                aria-label=FORM_MESSAGE_PLACEHOLDER
+                                required=true
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <span>{FORM_SUBMIT}</span>
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                        <p class="form-privacy">
+                            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                            {FORM_PRIVACY}
+                        </p>
                     </form>
                 </div>
             </div>

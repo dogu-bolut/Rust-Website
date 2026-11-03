@@ -138,6 +138,9 @@ Pages fetched this way still contain the old scripts, so apply the edits describ
   3. Under **Site configuration → Notifications → Emails and webhooks → Form submission notifications**, add an email notification for the `contact` form, so every message is also emailed to you.
 - **Limits:** the free plan includes 100 submissions a month. Submissions can always be read under **Forms** in the dashboard.
 
+**Contact form look**
+- The form is a card: a "Send a message" header with a reply-time note, name and email side by side (stacked under 600px), fields with leading icons that turn orange on focus along with a soft focus ring, a full-width Submit button with a paper-plane icon, and a one-line privacy note. Field names, placeholders and the Submit label are unchanged.
+
 **Contact details**
 - Phone, email and location are rows with a caption (Call me, Email me, Based in). On hover or keyboard focus, the icon tile fills with the accent gradient, the text turns orange and an arrow slides in.
 

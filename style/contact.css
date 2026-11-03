@@ -180,27 +180,108 @@
   margin-top: 8px;
 }
 
+/* the form is a card of its own, matching the tour and certificate cards */
 .contact-form {
   display: grid;
-  gap: 16px;
+  gap: 14px;
+  align-content: start;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255,90,31,.08), transparent 55%),
+    var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+}
+
+.form-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px 16px;
+  margin-bottom: 6px;
+}
+
+.form-head h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.form-head p {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-soft);
+  font-size: .8rem;
+}
+
+.form-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-dark-orange);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(255,148,49,.18);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* field with a leading icon that lights up while you type in it */
+.field {
+  position: relative;
+}
+
+.field > i {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  color: var(--text-soft);
+  transform: translateY(-50%);
+  transition: color .2s ease;
+  pointer-events: none;
+}
+
+.field-area > i {
+  top: 18px;
+  transform: none;
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 14px 16px;
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-md);
+  padding: 14px 16px 14px 44px;
+  background: var(--bg-1);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
   color: var(--text);
   font: inherit;
   resize: vertical;
+  transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+
+.contact-form textarea {
+  min-height: 150px;
+}
+
+.contact-form input:hover,
+.contact-form textarea:hover {
+  border-color: rgba(255,255,255,.2);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
+  background: #151515;
   border-color: var(--color-dark-orange);
+  box-shadow: 0 0 0 3px rgba(255,148,49,.15);
+}
+
+.field:focus-within > i {
+  color: var(--color-dark-orange);
 }
 
 .contact-form input::placeholder,
@@ -209,19 +290,59 @@
 }
 
 .btn-submit {
-  justify-self: start;
-  padding: 12px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+  padding: 15px 32px;
   background: var(--accent-gradient);
   border: none;
   border-radius: var(--radius-pill);
   box-shadow: 0 6px 20px var(--cta-glow);
   color: var(--text);
   font-weight: 700;
+  letter-spacing: .04em;
   text-transform: uppercase;
   transition: box-shadow .2s ease, transform .2s ease;
+}
+
+.btn-submit i {
+  transition: transform .2s ease;
 }
 
 .btn-submit:hover {
   box-shadow: 0 8px 28px rgba(255,90,31,.45);
   transform: translateY(-2px);
+}
+
+.btn-submit:hover i {
+  transform: translate(3px, -3px);
+}
+
+.form-privacy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-soft);
+  font-size: .78rem;
+}
+
+@media (max-width: 600px) {
+  .contact-form {
+    padding: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-submit:hover,
+  .btn-submit:hover i {
+    transform: none;
+  }
 }
