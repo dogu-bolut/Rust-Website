@@ -1,15 +1,16 @@
 :root {
   color-scheme: dark;
 
-  /* accent palette (from original site) */
-  --color-orange-red: #FF4500;      /* primary accent: CTAs, submit, highlights */
-  --color-tomato: #FF6347;
-  --color-classic-orange: #FFA500;  /* link hover */
-  --color-dark-orange: #FF8C00;
+  /* accent palette: the original site's hues, vivid but a step back from
+     pure neon (#FF4500, #FF8C00, #FFB347...) so they stay easy on the eyes */
+  --color-orange-red: #FF5A1F;      /* primary accent: CTAs, submit, highlights */
+  --color-tomato: #FF7043;
+  --color-classic-orange: #FFAE4D;  /* link hover */
+  --color-dark-orange: #FF9431;
   --color-coral: #FF7F50;
   --color-golden-orange: #E59400;
   --color-chocolate-orange: #D2691E;
-  --color-pastel-orange: #FFB347;
+  --color-pastel-orange: #FFBD72;
   --color-muted-sunset: #E6A157;
   --color-bronze-orange: #CC7722;
 
@@ -35,10 +36,12 @@
 
   /* buttons */
   /* one accent family: primary = filled orange-red, secondary = orange outline */
-  --btn-primary: var(--color-orange-red);  --btn-primary-hover: var(--color-tomato);
+  --btn-primary: var(--accent-gradient);
   --btn-secondary: var(--color-pastel-orange);
   --hero-visual: 440px;    /* shared max width of every hero illustration */
-  --cta-glow: rgba(255,69,0,0.4);
+  --cta-glow: rgba(255,90,31,0.3); /* the one glow: only the key action on each screen */
+  --lift: 0 6px 20px rgba(0,0,0,.35); /* neutral depth for everything else */
+  --accent-gradient: linear-gradient(120deg, var(--color-orange-red), var(--color-dark-orange));
 
   --radius-sm: 5px;
   --radius-md: 10px;

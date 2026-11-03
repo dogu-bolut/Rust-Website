@@ -5,12 +5,19 @@
   gap: 10px;
   padding: 12px 20px;
   overflow: hidden;
-  background: var(--color-orange-red);
-  color: var(--text);
+  background: rgba(255,90,31,.12);
+  color: var(--color-classic-orange);
   font-weight: 700;
   text-transform: uppercase;
   border-radius: var(--radius-pill);
-  box-shadow: 0 6px 20px var(--cta-glow);
+  transition: background-color .2s ease, color .2s ease;
+}
+
+/* secondary link inside cards: tinted at rest, fills only on hover */
+.glow-link:hover {
+  background: var(--accent-gradient);
+  box-shadow: var(--lift);
+  color: var(--text);
 }
 
 .glow-link::before {
@@ -20,9 +27,15 @@
   top: var(--y, 50%);
   width: 160px;
   height: 160px;
-  background: radial-gradient(circle, rgba(255,255,255,.2), transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,.12), transparent 70%);
   transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity .2s ease;
   pointer-events: none;
+}
+
+.glow-link:hover::before {
+  opacity: 1;
 }
 
 .glow-link::after {
@@ -32,7 +45,7 @@
   bottom: 0;
   left: -100%;
   width: 60%;
-  background: rgba(255,255,255,.15);
+  background: rgba(255,255,255,.08);
   transform: skewX(-20deg);
   pointer-events: none;
 }
@@ -58,7 +71,7 @@
 .project-card:hover,
 .game-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px var(--cta-glow);
+  box-shadow: 0 10px 30px var(--shadow);
 }
 
 .project-card {

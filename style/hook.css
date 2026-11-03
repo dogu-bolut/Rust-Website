@@ -8,8 +8,8 @@
   gap: 10px;
   margin-bottom: 18px;
   padding: 6px 14px 6px 12px;
-  background: rgba(255,140,0,.08);
-  border: 1px solid rgba(255,140,0,.25);
+  background: rgba(255,148,49,.08);
+  border: 1px solid rgba(255,148,49,.25);
   border-radius: var(--radius-pill);
   color: var(--color-pastel-orange);
   font-size: .8rem;
@@ -22,7 +22,7 @@
   height: 8px;
   border-radius: 50%;
   background: var(--color-dark-orange);
-  box-shadow: 0 0 0 3px rgba(255,140,0,.2);
+  box-shadow: 0 0 0 3px rgba(255,148,49,.2);
 }
 
 /* ---------- hero: tour card (home) */
@@ -30,9 +30,9 @@
   margin-top: 28px;
   padding: 20px;
   background:
-    radial-gradient(circle at 0% 0%, rgba(255,69,0,.14), transparent 60%),
+    radial-gradient(circle at 0% 0%, rgba(255,90,31,.12), transparent 60%),
     var(--card);
-  border: 1px solid rgba(255,140,0,.35);
+  border: 1px solid rgba(255,148,49,.35);
   border-radius: 16px;
   box-shadow: 0 12px 36px rgba(0,0,0,.35);
 }
@@ -99,7 +99,7 @@
   place-items: center;
   width: 32px;
   height: 32px;
-  background: rgba(255,140,0,.12);
+  background: rgba(255,148,49,.12);
   border-radius: 50%;
   color: var(--color-pastel-orange);
   font-size: .85rem;
@@ -121,8 +121,8 @@
 }
 
 .tour-step.next {
-  border-color: var(--color-dark-orange);
-  background: rgba(255,140,0,.07);
+  border-color: rgba(255,148,49,.6);
+  background: rgba(255,148,49,.05);
 }
 
 .tour-step.seen .tour-step-num {
@@ -137,7 +137,7 @@
   gap: 10px;
   margin-top: 16px;
   padding: 14px 20px;
-  background: var(--color-orange-red);
+  background: var(--accent-gradient);
   border-radius: var(--radius-pill);
   box-shadow: 0 6px 20px var(--cta-glow);
   color: var(--text);
@@ -149,19 +149,8 @@
 }
 
 .tour-go:hover {
-  background: var(--color-tomato);
+  box-shadow: 0 8px 28px rgba(255,90,31,.45);
   gap: 16px;
-}
-
-/* the card is the page's hook, so it gets the only ambient motion in the hero */
-@media (prefers-reduced-motion: no-preference) {
-  .tour-card:not(.complete) {
-    animation: tour-glow 3.2s ease-in-out infinite;
-  }
-
-  .tour-step.next .tour-step-num {
-    animation: tour-ping 2s ease-out infinite;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -172,15 +161,6 @@
   }
 }
 
-@keyframes tour-glow {
-  0%, 100% { border-color: rgba(255,140,0,.25); box-shadow: 0 12px 36px rgba(0,0,0,.35); }
-  50% { border-color: rgba(255,140,0,.7); box-shadow: 0 12px 36px rgba(0,0,0,.35), 0 0 28px rgba(255,69,0,.22); }
-}
-
-@keyframes tour-ping {
-  0% { box-shadow: 0 0 0 0 rgba(255,140,0,.55); }
-  100% { box-shadow: 0 0 0 12px rgba(255,140,0,0); }
-}
 
 /* ---------- section lead under a heading */
 .section-lead {
@@ -205,7 +185,7 @@
 
 .experience-stat {
   padding: 4px 10px;
-  background: rgba(255,140,0,.1);
+  background: rgba(255,148,49,.1);
   border-radius: var(--radius-pill);
   color: var(--color-pastel-orange);
   font-size: .72rem;
@@ -236,8 +216,7 @@
 }
 
 .experience-card.next {
-  border-color: rgba(255,140,0,.5);
-  box-shadow: 0 0 0 1px rgba(255,140,0,.25), 0 10px 30px var(--cta-glow);
+  border-color: rgba(255,148,49,.5);
 }
 
 .experience-card.seen {
@@ -255,7 +234,7 @@
   gap: 14px;
   padding: 8px 10px 8px 16px;
   background: rgba(20,20,20,.92);
-  border: 1px solid rgba(255,140,0,.25);
+  border: 1px solid rgba(255,148,49,.25);
   border-radius: var(--radius-pill);
   box-shadow: 0 10px 30px rgba(0,0,0,.5);
   backdrop-filter: blur(8px);
@@ -319,7 +298,7 @@
 }
 
 .tracker-step.seen {
-  background: rgba(255,140,0,.12);
+  background: rgba(255,148,49,.12);
   border: 1px solid transparent;
   color: var(--color-pastel-orange);
 }
@@ -338,9 +317,9 @@
   align-items: center;
   gap: 10px;
   padding: 12px 18px;
-  background: var(--color-orange-red);
+  background: var(--accent-gradient);
   border-radius: var(--radius-pill);
-  box-shadow: 0 6px 20px var(--cta-glow);
+  box-shadow: var(--lift);
   color: var(--text);
   font-size: .8rem;
   font-weight: 700;
@@ -348,7 +327,7 @@
 }
 
 .tracker-cta:hover {
-  background: var(--color-tomato);
+  box-shadow: 0 8px 28px rgba(255,90,31,.45);
 }
 
 /* ---------- "Next up" bridge at the end of an experience page */
@@ -363,9 +342,9 @@
   gap: 32px;
   padding: 32px 36px;
   background:
-    radial-gradient(circle at 100% 50%, rgba(255,69,0,.12), transparent 55%),
+    radial-gradient(circle at 100% 50%, rgba(255,90,31,.12), transparent 55%),
     var(--card);
-  border: 1px solid rgba(255,140,0,.2);
+  border: 1px solid rgba(255,148,49,.2);
   border-radius: 16px;
   color: var(--text);
   transition: border-color .25s ease, transform .25s ease;
@@ -401,7 +380,7 @@ a.next-up-card:hover {
   align-items: center;
   gap: 14px;
   padding: 16px 22px;
-  background: var(--color-orange-red);
+  background: var(--accent-gradient);
   border-radius: var(--radius-pill);
   box-shadow: 0 6px 20px var(--cta-glow);
   font-size: 1.1rem;

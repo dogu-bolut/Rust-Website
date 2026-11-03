@@ -66,17 +66,17 @@
 .btn-submit {
   justify-self: start;
   padding: 12px 32px;
-  background: var(--color-orange-red);
+  background: var(--accent-gradient);
   border: none;
   border-radius: var(--radius-pill);
   box-shadow: 0 6px 20px var(--cta-glow);
   color: var(--text);
   font-weight: 700;
   text-transform: uppercase;
-  transition: background-color .2s ease, transform .2s ease;
+  transition: box-shadow .2s ease, transform .2s ease;
 }
 
 .btn-submit:hover {
-  background: var(--color-tomato);
+  box-shadow: 0 8px 28px rgba(255,90,31,.45);
   transform: translateY(-2px);
 }

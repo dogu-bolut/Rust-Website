@@ -11,9 +11,9 @@
   border: 1px solid var(--card-border);
   border-radius: 14px;
   box-shadow:
-    0 0 0 1px rgba(255,140,0,.06),
+    0 0 0 1px rgba(255,255,255,.04),
     0 24px 60px rgba(0,0,0,.55),
-    0 0 80px rgba(255,69,0,.08);
+    0 24px 60px rgba(0,0,0,.45);
 }
 
 .showcase-bar {
@@ -256,7 +256,7 @@
   top: 50%;
   width: 48px;
   height: 1px;
-  background: linear-gradient(90deg, rgba(255,140,0,.45), rgba(255,140,0,.1));
+  background: linear-gradient(90deg, rgba(255,148,49,.45), rgba(255,148,49,.1));
 }
 
 .erp-module:nth-child(-n+4)::after {
@@ -278,9 +278,9 @@
   width: 76px;
   height: 76px;
   background: radial-gradient(circle at 30% 30%, #2a1a10, #140c08);
-  border: 1px solid rgba(255,140,0,.5);
+  border: 1px solid rgba(255,148,49,.35);
   border-radius: 50%;
-  box-shadow: 0 0 30px rgba(255,69,0,.25);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
   color: var(--color-dark-orange);
   font-size: .75rem;
   font-weight: 700;

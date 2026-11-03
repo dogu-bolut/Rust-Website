@@ -16,7 +16,7 @@
   height: 4px;
   margin: 10px auto 0;
   border-radius: var(--radius-pill);
-  background: var(--color-orange-red);
+  background: var(--accent-gradient);
 }
 
 /* Experiences */
@@ -41,7 +41,7 @@
 
 .experience-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 30px var(--cta-glow);
+  box-shadow: 0 10px 30px var(--shadow);
 }
 
 .experience-card img {
@@ -83,7 +83,7 @@
   flex-direction: column;
   overflow: hidden;
   background:
-    radial-gradient(260px circle at var(--x, -300px) var(--y, -300px), rgba(255,140,0,.12), transparent 70%),
+    radial-gradient(260px circle at var(--x, -300px) var(--y, -300px), rgba(255,148,49,.08), transparent 70%),
     var(--card);
   border: 1px solid var(--card-border);
   border-radius: 16px;
@@ -95,14 +95,14 @@
   position: absolute;
   inset: 0 0 auto;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-orange-red), var(--color-pastel-orange));
-  opacity: .5;
+  background: var(--accent-gradient);
+  opacity: .6;
   transition: opacity .25s ease;
 }
 
 .certificate-card:hover {
-  border-color: rgba(255,140,0,.45);
-  box-shadow: 0 14px 36px var(--shadow), 0 0 0 1px rgba(255,140,0,.15);
+  border-color: rgba(255,148,49,.4);
+  box-shadow: 0 14px 36px var(--shadow);
   transform: translateY(-4px);
 }
 
@@ -115,7 +115,7 @@
   align-items: center;
   gap: 18px;
   padding: 24px 24px 18px;
-  background: linear-gradient(135deg, rgba(255,69,0,.10), transparent 65%);
+  background: rgba(255,255,255,.015);
   border-bottom: 1px solid var(--card-border);
 }
 
@@ -125,16 +125,16 @@
   place-items: center;
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, var(--color-orange-red), var(--color-dark-orange));
+  background: rgba(255,148,49,.14);
+  border: 1px solid rgba(255,148,49,.35);
   border-radius: 14px;
-  box-shadow: 0 6px 18px var(--cta-glow);
-  color: var(--text);
+  color: var(--color-dark-orange);
   font-size: 1.4rem;
   transition: transform .25s ease;
 }
 
 .certificate-card:hover .certificate-icon {
-  transform: rotate(-6deg) scale(1.06);
+  transform: translateY(-2px);
 }
 
 .certificate-name {
@@ -194,7 +194,7 @@
 }
 
 .certificate-kind.completion {
-  background: rgba(255,140,0,.14);
+  background: rgba(255,148,49,.14);
   border-color: transparent;
   color: var(--color-pastel-orange);
 }

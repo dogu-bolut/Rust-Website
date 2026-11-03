@@ -74,11 +74,17 @@
 
 .btn-meeting {
   background: var(--btn-primary);
+  box-shadow: var(--lift);
+}
+
+/* the navbar's Book Meeting is each page's glowing focus, except on home,
+   where the tour card's button takes that role */
+body:not(:has(.tour-card)) .nav-cta .btn-meeting {
   box-shadow: 0 6px 20px var(--cta-glow);
 }
 
 .btn-meeting:hover {
-  background: var(--btn-primary-hover);
+  box-shadow: 0 8px 28px rgba(255,90,31,.45);
 }
 
 .btn-cv {

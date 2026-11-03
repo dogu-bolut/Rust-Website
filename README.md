@@ -124,6 +124,11 @@ Pages fetched this way still contain the old scripts, so apply the edits describ
 - **Netlify badge:** on the free plan, Netlify adds a "Powered by Netlify" iframe (`#nl-badge-frame`, 202×64) in the bottom-right corner. Only when it is present (`body:has(#nl-badge-frame)`), back-to-top moves up at every width, and on screens up to 768px the tracker moves up too.
 - **New copy:** the home description, the availability line and the tracker and Next up wording are new, not from the original site.
 
+**Palette: vivid, not neon**
+- **Accents:** the original hues, pulled one step back from pure neon in `style/tokens.css` (#FF4500 → #FF5A1F, #FF8C00 → #FF9431, #FFB347 → #FFBD72). They stay bright but are easier on the eyes.
+- **Gradient for primary actions:** `--accent-gradient` (orange-red → orange) fills Book Meeting, Start the tour, Submit, the tracker and Next up buttons, and the section heading underlines. Hover adds glow instead of switching colour.
+- **One glow per screen:** a soft orange glow (`--cta-glow`) marks only the key action in view: Start the tour on home, the navbar's Book Meeting on the experience pages (`body:not(:has(.tour-card))`), the Next up arrow at the end of each experience and Send in the contact form. Everything else uses neutral depth (`--lift`, `--shadow`), and buttons only glow on hover. Nothing pulses. "Learn more" pills are tinted at rest and fill with the gradient on hover.
+
 **Certificates and socials**
 - **Certificates:** a two-column grid of cards. Each has an icon for its kind (course, summer camp, hackathon), an orange date, a completion or participation chip, a cursor-following glow (the same `dom::track_glow` as the glow links) and a lift on hover. The content is unchanged.
 - **Social icons:** each has a 44px hit area that lifts, turns orange-red and glows on hover or keyboard focus.
