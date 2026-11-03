@@ -15,6 +15,11 @@ fn scroll_behavior() -> ScrollBehavior {
     }
 }
 
+/// Whether the current page has an element with this id.
+pub fn has_id(id: &str) -> bool {
+    document().get_element_by_id(id).is_some()
+}
+
 /// Scrolls to an element by id; `home` means the top of the current page.
 pub fn scroll_to_id(id: &str) {
     if id == "home" {

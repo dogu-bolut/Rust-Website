@@ -129,6 +129,21 @@ Pages fetched this way still contain the old scripts, so apply the edits describ
 - **Gradient for primary actions:** `--accent-gradient` (orange-red → orange) fills Book Meeting, Start the tour, Submit, the tracker and Next up buttons, and the section heading underlines. Hover adds glow instead of switching colour.
 - **One glow per screen:** a soft orange glow (`--cta-glow`) marks only the key action in view: Start the tour on home, the navbar's Book Meeting on the experience pages (`body:not(:has(.tour-card))`), the Next up arrow at the end of each experience and Send in the contact form. Everything else uses neutral depth (`--lift`, `--shadow`), and buttons only glow on hover. Nothing pulses. "Learn more" pills are tinted at rest and fill with the gradient on hover.
 
+**Contact form (Netlify Forms)**
+- **Why:** Formspree stopped delivering messages, so the form now uses Netlify Forms, which is built into the host and needs no third-party account or JavaScript.
+- **How it works:** the contact form is rendered by WASM, which Netlify's build-time form detection can't see, so `index.html` holds a hidden static copy (`<form name="contact" data-netlify="true" netlify-honeypot="bot-field">`) that registers the fields. The real form posts `form-name=contact` with name, email and message to `/thanks`, an app route that confirms the message was sent. Bots that fill the hidden `bot-field` honeypot are dropped.
+- **One-time Netlify setup:**
+  1. In Netlify, open the site, then **Forms**, and click **Enable form detection**.
+  2. Redeploy (push a commit, or **Deploys → Trigger deploy**). A form named `contact` should then appear under **Forms**.
+  3. Under **Site configuration → Notifications → Emails and webhooks → Form submission notifications**, add an email notification for the `contact` form, so every message is also emailed to you.
+- **Limits:** the free plan includes 100 submissions a month. Submissions can always be read under **Forms** in the dashboard.
+
+**Contact details**
+- Phone, email and location are rows with a caption (Call me, Email me, Based in). On hover or keyboard focus, the icon tile fills with the accent gradient, the text turns orange and an arrow slides in.
+
+**Navigation from other pages**
+- On pages without the home sections (`/thanks`, the 404), navbar links go home first and then scroll to the section (`AppState::pending_anchor`).
+
 **Certificates and socials**
 - **Certificates:** a two-column grid of cards. Each has an icon for its kind (course, summer camp, hackathon), an orange date, a completion or participation chip, a cursor-following glow (the same `dom::track_glow` as the glow links) and a lift on hover. The content is unchanged.
 - **Social icons:** each has a 44px hit area that lifts, turns orange-red and glows on hover or keyboard focus.

@@ -108,6 +108,8 @@ pub struct ContactItem {
     pub label: &'static str,
     pub url: &'static str,
     pub icon: &'static str,
+    /// Small caption above the value, saying what the link does.
+    pub caption: &'static str,
     pub new_tab: bool,
 }
 
@@ -121,7 +123,11 @@ pub const BOOK_MEETING_URL: &str = "https://calendar.app.google/oDQZRGp8SBAZg6HM
 pub const DOWNLOAD_CV_LABEL: &str = "Download CV";
 pub const DOWNLOAD_CV_URL: &str = "/assets/pdf/Dogu%20Bolut%20CV%20-%20English.pdf";
 
-pub const FORM_ACTION: &str = "https://formspree.io/f/xgvlodny";
+/// Netlify Forms: the form is detected from the static copy in `index.html`;
+/// `FORM_ACTION` is the page shown after a successful submit.
+pub const FORM_NAME: &str = "contact";
+pub const FORM_ACTION: &str = "/thanks";
+pub const FORM_HONEYPOT: &str = "bot-field";
 pub const CONTACT_HEADING: &str = "Contacts";
 pub const CONTACT_SUBHEADING: &str = "Let's Work Together!";
 pub const FORM_NAME_PLACEHOLDER: &str = "Full Name";
@@ -129,23 +135,31 @@ pub const FORM_EMAIL_PLACEHOLDER: &str = "Corporate Email";
 pub const FORM_MESSAGE_PLACEHOLDER: &str = "Your Message";
 pub const FORM_SUBMIT: &str = "Submit";
 
+pub const THANKS_TITLE: &str = "Message sent. Thank you!";
+pub const THANKS_TEXT: &str =
+    "I read every message and usually reply within a day or two. If it's urgent, book a call and we can talk sooner.";
+pub const THANKS_BACK: &str = "Back to home";
+
 pub const CONTACT_ITEMS: &[ContactItem] = &[
     ContactItem {
         label: "+90 536 700 09 31",
         url: "tel:+905367000931",
         icon: "fa-solid fa-phone",
+        caption: "Call me",
         new_tab: false,
     },
     ContactItem {
         label: "dogubolut@gmail.com",
         url: "mailto:dogubolut@gmail.com",
         icon: "fa-solid fa-envelope",
+        caption: "Email me",
         new_tab: false,
     },
     ContactItem {
         label: "Umraniye, Istanbul",
         url: "https://maps.app.goo.gl/HDoekYDTvmD95tMY9",
-        icon: "fa-solid fa-house",
+        icon: "fa-solid fa-location-dot",
+        caption: "Based in",
         new_tab: true,
     },
 ];

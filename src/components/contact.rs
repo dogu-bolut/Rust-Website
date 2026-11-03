@@ -3,7 +3,7 @@ use leptos::prelude::*;
 use crate::components::SectionHeading;
 use crate::data::{
     CONTACT_HEADING, CONTACT_ITEMS, CONTACT_SUBHEADING, FORM_ACTION, FORM_EMAIL_PLACEHOLDER,
-    FORM_MESSAGE_PLACEHOLDER, FORM_NAME_PLACEHOLDER, FORM_SUBMIT,
+    FORM_HONEYPOT, FORM_MESSAGE_PLACEHOLDER, FORM_NAME, FORM_NAME_PLACEHOLDER, FORM_SUBMIT,
 };
 
 #[component]
@@ -27,8 +27,14 @@ pub fn Contact(blurb: &'static str) -> impl IntoView {
                                                 target=item.new_tab.then_some("_blank")
                                                 rel=item.new_tab.then_some("noopener noreferrer")
                                             >
-                                                <i class=item.icon aria-hidden="true"></i>
-                                                <span>{item.label}</span>
+                                                <span class="contact-icon" aria-hidden="true">
+                                                    <i class=item.icon></i>
+                                                </span>
+                                                <span class="contact-text">
+                                                    <small>{item.caption}</small>
+                                                    <span>{item.label}</span>
+                                                </span>
+                                                <i class="fa-solid fa-arrow-right contact-arrow" aria-hidden="true"></i>
                                             </a>
                                         </li>
                                     }
@@ -36,7 +42,16 @@ pub fn Contact(blurb: &'static str) -> impl IntoView {
                                 .collect_view()}
                         </ul>
                     </div>
-                    <form class="contact-form" action=FORM_ACTION method="POST">
+                    // Netlify Forms: `form-name` ties this to the static form in index.html,
+                    // and bots that fill the hidden honeypot field are dropped.
+                    <form class="contact-form" name=FORM_NAME action=FORM_ACTION method="POST">
+                        <input type="hidden" name="form-name" value=FORM_NAME/>
+                        <p class="form-honeypot" aria-hidden="true">
+                            <label>
+                                "Leave this empty: "
+                                <input name=FORM_HONEYPOT tabindex="-1" autocomplete="off"/>
+                            </label>
+                        </p>
                         <input
                             type="text"
                             name="name"

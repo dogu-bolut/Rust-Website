@@ -8,7 +8,7 @@ use leptos_router::{
 
 use crate::components::{BackToTop, ExploreTracker, Footer, Navbar, SideMenu};
 use crate::dom;
-use crate::pages::{ErpPage, GamesPage, HomePage, NotFound, WebPage};
+use crate::pages::{ErpPage, GamesPage, HomePage, NotFound, ThanksPage, WebPage};
 use crate::progress::Explored;
 
 const NAV_HEIGHT: f64 = 68.0;
@@ -21,6 +21,9 @@ pub struct AppState {
     pub show_top: RwSignal<bool>,
     /// The home tour card is on screen; the floating tracker would repeat it.
     pub tour_visible: RwSignal<bool>,
+    /// Section to scroll to once the next route has rendered (a home anchor
+    /// clicked on a page that doesn't have it, like /thanks or the 404).
+    pub pending_anchor: RwSignal<Option<&'static str>>,
 }
 
 #[component]
@@ -33,6 +36,7 @@ pub fn App() -> impl IntoView {
         scrolled: RwSignal::new(false),
         show_top: RwSignal::new(false),
         tour_visible: RwSignal::new(false),
+        pending_anchor: RwSignal::new(None),
     };
     provide_context(state);
     Explored::provide();
@@ -64,6 +68,17 @@ fn Shell() -> impl IntoView {
         explored.visit(&pathname.get());
         state.menu_open.set(false);
         dom::jump_to_top();
+        if let Some(anchor) = state
+            .pending_anchor
+            .try_update_untracked(Option::take)
+            .flatten()
+        {
+            // Wait a frame so the new page's sections exist.
+            set_timeout(
+                move || dom::scroll_to_id(anchor),
+                std::time::Duration::from_millis(50),
+            );
+        }
     });
 
     view! {
@@ -85,6 +100,7 @@ fn Shell() -> impl IntoView {
                 <Route path=path!("/web") view=WebPage/>
                 <Route path=path!("/games") view=GamesPage/>
                 <Route path=path!("/erp") view=ErpPage/>
+                <Route path=path!("/thanks") view=ThanksPage/>
             </Routes>
         </main>
         <ExploreTracker/>
